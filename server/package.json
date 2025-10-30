@@ -1,16 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "description": "Backend server for AI Resume Builder",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
+    "start": "node server.js",         // used by Render for production
+    "dev": "nodemon server.js"         // used locally for development
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@imagekit/nodejs": "^7.1.0",
     "bcrypt": "^6.0.0",

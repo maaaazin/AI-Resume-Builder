@@ -9,18 +9,25 @@ import aiRouter from "./routes/aiRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Database connection
-await connectDB()
+app.use(express.json());
+app.use(cors());
 
-app.use(express.json())
-app.use(cors())
+app.get("/", (req, res) => res.send("Server is live..."));
+app.use("/api/users", userRouter);
+app.use("/api/resumes", resumeRouter);
+app.use("/api/ai", aiRouter);
 
-app.get('/', (req, res)=> res.send("Server is live..."))
-app.use('/api/users', userRouter)
-app.use('/api/resumes', resumeRouter)
-app.use('/api/ai', aiRouter)
+// ✅ connect to DB and then start server
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`✅ Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("❌ DB Connection Failed:", error.message);
+    process.exit(1);
+  }
+};
 
-app.listen(PORT, ()=>{
-    console.log(`Server is running on port ${PORT}`);
-    
-});
+startServer();
