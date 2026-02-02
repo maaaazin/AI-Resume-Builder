@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",         // used by Render for production
-    "dev": "nodemon server.js"         // used locally for development
+    "start": "node server.js",        
+    "dev": "nodemon server.js"         
   },
   "dependencies": {
     "@imagekit/nodejs": "^7.1.0",
